@@ -15,7 +15,11 @@ Removing anything should be as simple as git revert.
 * Rails 6.0.3
 * Postgres
 
-If you need to install Ruby, the easiest way is [rbenv](https://github.com/rbenv/rbenv#installation). After that, `gem install rails -v 6.0.3`. To install Postgres on Ubuntu, follow their [official](https://www.postgresql.org/download/linux/ubuntu/). For OS X, [Postgres.app](https://postgresapp.com/) is the probably the simplest but you can use [Homebrew](https://www.robinwieruch.de/postgres-sql-macos-setup) too.
+If you need to install Ruby, the easiest way is [rbenv](https://github.com/rbenv/rbenv#installation).
+After that, `gem install rails -v 6.0.3`. To install Postgres on Ubuntu, follow their
+[official instructions](https://www.postgresql.org/download/linux/ubuntu/).
+For OS X, [Postgres.app](https://postgresapp.com/) is the probably the simplest
+but you can use [Homebrew](https://www.robinwieruch.de/postgres-sql-macos-setup) too.
 
 ## RubyGems DB
 Visit https://rubygems.org/pages/data to download a database dump. Run the following command
@@ -33,8 +37,9 @@ The application tables should show up below.
 ["schema_migrations", "ar_internal_metadata", "libraries"]
 ```
 
-Note: load-pg-dump is borrowed from https://github.com/rubygems/rubygems.org/blob/master/script/load-pg-dump
-without any changes.
+Note: We created reader.rb and it can be useful example of how to switch between the rubygems and application database.
+load-pg-dump is borrowed from https://github.com/rubygems/rubygems.org/blob/master/script/load-pg-dump
+without any changes. Everytime you run it, it will drop the rubygems database and recreate it.
 
 ## Help
 We don't want you to spend too much time on the environment. If you need help, feel free to reach out.
