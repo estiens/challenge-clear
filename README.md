@@ -50,3 +50,4 @@ If you're not familiar with Rails, a good resource is the [official Rails Guide]
 * If you want to run a file in the context of the rails application, use `rails runner path/to/file.rb`
 * You can run all tests using `rails test`. Browser tests are called system tests (test/system/libraries_test.rb).
 System tests do not run by default. You need to use `rails test:system`.
+* Use a GUI for the database like PgAdmin or Postico to explore the data
