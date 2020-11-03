@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_014021) do
+ActiveRecord::Schema.define(version: 2020_11_03_192614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2020_11_03_014021) do
 
   create_table "libraries", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
   end
 
 end
