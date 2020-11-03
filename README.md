@@ -6,6 +6,7 @@ of the hiring challenge. It includes a few helpful libraries to get you setup qu
 * Preconfigured to use Postgres (like the [RubyGems Data Dump](https://rubygems.org/pages/data))
 * Access to the RubyGems database
 * Support for bootstrap 3 and jquery
+* Remove Spring to avoid caching errors
 
 Removing anything should be as simple as git revert.
 
