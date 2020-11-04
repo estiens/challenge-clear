@@ -7,6 +7,7 @@ of the hiring challenge. It includes a few helpful libraries to get you setup qu
 * Access to the RubyGems database
 * Support for bootstrap 3 and jquery
 * Remove Spring to avoid caching errors
+* Re-added sprockets (see below for instructions)
 
 Removing anything should be as simple as git revert.
 
@@ -51,3 +52,11 @@ If you're not familiar with Rails, a good resource is the [official Rails Guide]
 * You can run all tests using `rails test`. Browser tests are called system tests (test/system/libraries_test.rb).
 System tests do not run by default. You need to use `rails test:system`.
 * Use a GUI for the database like PgAdmin or Postico to explore the data
+* There's some old school typeahead / autocomplete libraries out there that work just fine. Getting these
+libraries working with Webpack can be a pain. We re-added the javascript asset pipeline (it was removed in favor
+of Webpacker).
+Suppose you want to use typeahead.js. Download the dist into app/assets/javascript. In app/assets/application.js, add
+```
+//= typeahead
+//= require_tree .
+```
