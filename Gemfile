@@ -16,6 +16,7 @@ gem "turbolinks", "~> 5"
 gem "webpacker", "~> 4.0"
 
 gem "stimulus_reflex"
+gem "stimulus_reflex_testing"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]

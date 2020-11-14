@@ -1,0 +1,28 @@
+<div class="container">
+  <div id ="search" data-controller="search">
+    <div class="field">
+      <label class="label">Search For A Library</label>
+      <div class="control">
+        <input id= "search-input" class="input" type="text" placeholder="Just start typing..." data-target="search.query"
+          data-action="debounced:input->search#perform">
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <label class="radio"><input type="radio" name="language" data-target="search.langRuby" checked>Ruby</label>
+        <label class="radio"><input type="radio" name="language" data-target="search.langPython">Python</label>
+        <label class="radio"><input type="radio" name="language" data-target="search.langJs">JS</label>
+      </div>
+    </div>
+    <div id="results-box">
+      <span data-target="search.loading" class="text-danger" hidden>
+        <i class="fas fa-spinner fa-spin"></i>
+        Searching for books...
+      </span>
+      <span id='results-list' data-target="search.results" class="text-success">
+        <strong><%= "#{number_with_delimiter @results&.count.to_i} #{@language} " %>results found</strong>
+        Results: <%= @query.inspect %> | <%= @results.inspect %>
+      </span>
+    </div>
+  </div>
+  <div>

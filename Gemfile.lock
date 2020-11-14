@@ -229,6 +229,7 @@ GEM
       rack
       rails (>= 5.2)
       redis
+    stimulus_reflex_testing (0.1.0)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -279,6 +280,7 @@ DEPENDENCIES
   selenium-webdriver
   solargraph
   stimulus_reflex
+  stimulus_reflex_testing
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)
