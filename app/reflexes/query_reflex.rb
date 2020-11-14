@@ -1,12 +1,7 @@
 class QueryReflex < StimulusReflex::Reflex
   def create(query, language = "ruby")
-    puts query
-    puts language
-    @query = query
-    @language = language
-    @results = []
-    query.length.times do
-      @results << "foo"
-    end
+    return unless query.length >= 3
+
+    @query = Query.find_or_create_by(input: query, language: language, ip_address: request.remote_ip)
   end
 end

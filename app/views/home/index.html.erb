@@ -8,10 +8,10 @@
       </div>
     </div>
     <div class="field">
-      <div class="control">
-        <label class="radio"><input type="radio" name="language" data-target="search.langRuby" checked>Ruby</label>
-        <label class="radio"><input type="radio" name="language" data-target="search.langPython">Python</label>
-        <label class="radio"><input type="radio" name="language" data-target="search.langJs">JS</label>
+      <div class="control language-select">
+        <label  class="radio"><input id="ruby-checkbox" type="radio" name="language" data-target="search.langRuby" checked>Ruby</label>
+        <label class="radio"><input id="python-checkbox" type="radio" name="language" data-target="search.langPython">Python</label>
+        <label class="radio"><input id="js-checkbox" type="radio" name="language" data-target="search.langJs">JS</label>
       </div>
     </div>
     <div id="results-box">
@@ -20,8 +20,8 @@
         Searching for books...
       </span>
       <span id='results-list' data-target="search.results" class="text-success">
-        <strong><%= "#{number_with_delimiter @results&.count.to_i} #{@language} " %>results found</strong>
-        Results: <%= @query.inspect %> | <%= @results.inspect %>
+        <strong><%= "#{number_with_delimiter @query&.autocomplete_results&.count.to_i} #{@query&.language} " %>results found</strong>
+        Results: <%= @query&.autocomplete_results %>
       </span>
     </div>
   </div>
