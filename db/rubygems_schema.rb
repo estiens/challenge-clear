@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2020_11_14_070721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -48,6 +48,17 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["rubygem_id"], name: "index_linksets_on_rubygem_id"
+  end
+
+  create_table "queries", force: :cascade do |t|
+    t.string "input"
+    t.string "ip_address"
+    t.integer "language"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["input"], name: "index_queries_on_input"
+    t.index ["ip_address"], name: "index_queries_on_ip_address"
+    t.index ["language"], name: "index_queries_on_language"
   end
 
   create_table "rubygems", id: :serial, force: :cascade do |t|

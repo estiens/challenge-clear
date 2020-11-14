@@ -61,6 +61,18 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.before(:suite) do
+    puts "loading seeds"
+    RubygemsDatabase::Record.destroy_all
+    Rails.application.load_seed
+  end
+
+  config.after(:suite) do
+    RubygemsDatabase::Record.destroy_all
+    RubygemsDatabase::Version.destroy_all
+    RubygemsDatabase::Detail.destroy_all
+    RubygemsDatabase::GemDownload.destroy_all
+  end
 end
 
 Capybara.javascript_driver = :headless_firefox

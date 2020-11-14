@@ -19,10 +19,8 @@ test:
   primary:
     <<: *default
     database: challenge_test
-    migrations_path: 'db/migrate/test-db'
 
   rubygems:
     <<: *default
-    database: rubygems_development
-    migrations_path: 'db/migrate/dev-db'
+    database: rubygems_test
 

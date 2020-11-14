@@ -27,6 +27,7 @@ group :development do
   gem "listen", "~> 3.2"
   gem "rubocop-performance"
   gem "rubocop-rails"
+  gem "seed_dump"
   gem "solargraph"
   gem "web-console", ">= 3.3.0"
 end

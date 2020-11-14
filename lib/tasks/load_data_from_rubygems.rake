@@ -26,4 +26,14 @@ namespace :rubygems do
     sh("psql #{psql_config_string} -c 'DROP TABLE IF EXISTS dependencies, gem_downloads, linksets, rubygems, versions CASCADE;'")
     sh("tar xOf #{Rails.root.join('tmp', 'rubygems.sql.gz')} | gunzip -c | psql #{psql_config_string}")
   end
+
+  task create_test_seeds: :environment do
+    clean_ids = RubygemsDatabase::Record.query_by_name("clean").limit(15).pluck(:id)
+    dirty_ids = RubygemsDatabase::Record.query_by_name("dirty").limit(10).pluck(:id)
+    ids = clean_ids + dirty_ids
+    SeedDump.dump(RubygemsDatabase::Record.find(ids), file: Rails.root.join("db", "seeds", "test", "rubygem.rb"))
+    SeedDump.dump(RubygemsDatabase::Detail.where(rubygem_id: ids), file: Rails.root.join("db", "seeds", "test", "rubygem.rb"), append: true)
+    SeedDump.dump(RubygemsDatabase::GemDownload.where(rubygem_id: ids), file: Rails.root.join("db", "seeds", "test", "rubygem.rb"), append: true)
+    SeedDump.dump(RubygemsDatabase::Version.where(rubygem_id: ids), file: Rails.root.join("db", "seeds", "test", "rubygem.rb"), append: true)
+  end
 end
