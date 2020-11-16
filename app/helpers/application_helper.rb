@@ -8,7 +8,7 @@ module ApplicationHelper
   def icon_for(record)
     if record.language == :ruby
       show_svg("ruby_icon.svg")
-    elsif record.language == :js
+    elsif record.language == :javascript
       show_svg("js_icon.svg")
     end
   end

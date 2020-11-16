@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Query, type: :model do
-  let(:query) { Query.create(input: "awesomesauce!") }
+  let(:query) { Query.create(input: "awesomesauce!", language: 0) }
 
   it "is invalid without an input" do
     query.input = nil

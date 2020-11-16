@@ -1,5 +1,5 @@
-<div class="container">
-  <div id="search" data-controller="search">
+<div class="container" data-controller="search">
+  <div id="search" >
     <div class="field">
       <label class="label">Search For A Library</label>
       <div class="control">
@@ -9,34 +9,49 @@
     </div>
     <div class="field">
       <div class="control language-select">
-        <label class="radio"><input id="ruby-checkbox" type="radio" name="language" data-target="search.langRuby"
-            checked>Ruby</label>
-        <label class="radio"><input id="python-checkbox" type="radio" name="language"
-            data-target="search.langPython">Python</label>
-        <label class="radio"><input id="js-checkbox" type="radio" name="language" data-target="search.langJs">JS</label>
+        <label class="radio">
+          <input id="ruby-checkbox" type="radio" name="language" data-target="search.langRuby"
+            data-action="search#perform" checked>
+          Ruby
+        </label>
+        <label class="radio">
+          <input id="python-checkbox" type="radio" name="language" data-action="search#perform"
+            data-target="search.langPython" disabled>Python
+        </label>
+        <label class="radio">
+          <input id="js-checkbox" type="radio" name="language" data-target="search.langJs"
+            data-action="search#perform">JS
+        </label>
       </div>
     </div>
-    <div id="results-box">
-      <span data-target="search.loading" class="text-danger" hidden>
-        <i class="fas fa-spinner fa-spin"></i>
-        Searching for books...
-      </span>
-      <div class="columns" data-target="search.results" class="text-success">
-        <% if @query %>
-          <div id='results-list' class="column">
-            <strong><%= "#{number_with_delimiter @query&.autocomplete_results&.count.to_i} #{@query&.language} " %>results
-              found</strong>
-            <% @query&.autocomplete_results&.each do |result| %>
-            <p><a class="query-result" id=<%= "record_#{result[0]}" %> data-test="search-result" data-query-id=<%= @query&.id %> data-result-id=<%= result[0] %> data-reflex="click->QueryReflex#show"><%= result.last %></a>
-              </p>
-                <% end %>
-          </div>
-        <% end %>
+  </div>
+  <div id="results-box">
+    <div data-target="search.loading" class="text-danger" hidden>
+      Loading Search Results...
+    </div>
+    <div class="columns" data-target="search.results" class="text-success">
+      <% if @query %>
+      <div id='results-list' class="column">
+        <strong><%= "#{number_with_delimiter @query&.autocomplete_results&.count.to_i} #{@query&.language} " %>results
+          found</strong>
+        <p>
+          <% @query&.autocomplete_results&.each do |result| %>
+          <a class="query-result" id=<%= "record_#{result[0].to_s.gsub(/[^0-9a-z]/i, '')}" %> data-test="search-result"
+            data-query-id=<%= @query&.id %> data-result-id=<%= result[0] %> data-reflex="click->QueryReflex#show">
+            <%= result.last %>
+          </a>
+          <br />
+          <% end %>
+        </p>
+      </div>
+      <% end %>
+      <div id='result-show' class="column">
         <% if @result %>
-          <div id='result-show' data-test="show-info" class="column">
-            <%= render 'library_card', record: @result  %>
-         </div>
+        <div data-test="show-result-info">
+          <%= render('library_card', record: @result) %>
+        </div>
         <% end %>
+      </div>
     </div>
   </div>
-  <div>
+</div>

@@ -8,9 +8,14 @@
       </div>
       <div class="media-content">
         <p class="title is-4"><%= record.library_name %></p>
-        <% if record.additional_info.dig(:url) %>
-        <p class="subtitle is-6"><%= link_to record.additional_info.dig(:url) %></p>
-        <% end %>
+        <p class="subtitle is-6">
+            <% if record.authors %>
+              <%= record.authors %><br/>
+            <% end %>
+          <% if record.url %>
+            <%= link_to record.url, record.url %>
+          <% end %>
+        </p>
       </div>
     </div>
 

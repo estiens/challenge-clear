@@ -5,12 +5,10 @@ export default class extends Controller {
   static targets = ['query', 'loading', 'results', 'langRuby', 'langPython', 'langJs']
 
   connect () {
-   console.log("Here We Ar")
    StimulusReflex.register(this)
   }
 
   beforeCreate () {
-    console.log(this.loadingTarget)
     this.loadingTarget.hidden = false
     this.resultsTarget.hidden = true
   }
@@ -22,7 +20,7 @@ export default class extends Controller {
 
   perform (event) {
     event.preventDefault()
-    this.stimulate('QueryReflex#create', this.queryTarget.value, this.languageChoice)
+    this.stimulate('QueryReflex#create', { query: this.queryTarget.value, lang: this.languageChoice } )
   }
 
   get languageChoice() {
@@ -33,7 +31,7 @@ export default class extends Controller {
       return 'python'
     }
     if(this.langJsTarget.checked) {
-      return 'js'
+      return 'javascript'
     }
   }
 }

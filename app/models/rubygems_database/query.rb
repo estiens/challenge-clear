@@ -10,7 +10,7 @@ module RubygemsDatabase
     end
 
     def record_for(id)
-      Record.find(id)
+      Record.find(id.to_i)
     end
   end
 end

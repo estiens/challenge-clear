@@ -33,14 +33,8 @@ module RubygemsDatabase
       end
     end
 
-    def additional_info
-      detail_info = details.last
-      return {} unless detail_info
-
-      {
-        url: detail_info.home,
-        docs: detail_info.docs
-      }
+    def url
+      details.last&.home
     end
 
     private

@@ -3,10 +3,16 @@ class Query < ApplicationRecord
   enum language: %i[ruby python javascript].freeze
 
   def record_library
-    "RubygemsDatabase::Query".constantize
+    if ruby?
+      "RubygemsDatabase::Query".constantize
+    elsif javascript?
+      "JsApi::Query".constantize
+    end
   end
 
   def query
+    return nil unless record_library
+
     @query ||= record_library.new(query: input)
   end
 

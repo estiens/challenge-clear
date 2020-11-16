@@ -20,6 +20,7 @@ gem "stimulus_reflex_testing"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
+  gem "launchy"
   gem "pry-rails"
 end
 
