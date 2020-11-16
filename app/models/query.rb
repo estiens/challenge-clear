@@ -2,14 +2,6 @@ class Query < ApplicationRecord
   validates :input, presence: true
   enum language: %i[ruby python javascript].freeze
 
-  def record_library
-    if ruby?
-      "RubygemsDatabase::Query".constantize
-    elsif javascript?
-      "JsApi::Query".constantize
-    end
-  end
-
   def query
     return nil unless record_library
 
@@ -25,12 +17,20 @@ class Query < ApplicationRecord
   end
 
   def record_for(name)
-    Rails.cache.fetch("record_#{cache_key}") do
+    Rails.cache.fetch("#{name}#{cache_key}") do
       query.record_for(name)
     end
   end
 
   private
+    def record_library
+      if ruby?
+        "RubygemsDatabase::Query".constantize
+      elsif javascript?
+        "JsApi::Query".constantize
+      end
+    end
+
     def cache_key
       "query_#{input}_#{language}"
     end
