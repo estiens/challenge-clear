@@ -1,7 +1,7 @@
 class QueryReflex < StimulusReflex::Reflex
   def create(query)
     @result = nil
-    @query = Query.create_by!(input: query["query"], language: query["lang"], ip_address: request.remote_ip)
+    @query = Query.create!(input: query["query"], language: query["lang"], ip_address: request.remote_ip)
   end
 
   def show

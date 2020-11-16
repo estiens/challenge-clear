@@ -1,0 +1,26 @@
+  <div class="title">
+    <%= link_to 'home', root_path %>
+  </div>
+  <div class="container">
+
+  <div class="columns">
+    <div class="card column">
+      <h2>Common Queries</h2>
+      <div class="card-content">
+        <%= bar_chart stats_common_path %>
+      </div>
+    </div>
+    <div class="card column">
+      <h2>Queries by Language</h2>
+      <div class="card-content">
+        <%= pie_chart stats_language_path %>
+      </div>
+    </div>
+  </div>
+  <div class="lastqueries">
+    <h2>Recent Queries</h2>
+    <% @recent_queries.each do |q| %>
+    <p><%= "#{q.input} in #{q.language} (#{q.ip_address}) - #{q.created_at}" %></p>
+    <% end %>
+  </div>
+</div>

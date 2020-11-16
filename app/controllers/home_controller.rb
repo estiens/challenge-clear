@@ -13,6 +13,19 @@ class HomeController < ApplicationController
     render :index
   end
 
+  def stats
+    @recent_queries = Query.last(7).reverse
+  end
+
+  def common_queries
+    queries = Query.group(:input).count.sort_by { |_k, v| v }.last(10).reverse
+    render json: queries
+  end
+
+  def language_count
+    render json: Query.group(:language).count
+  end
+
   private
     def common_library_word
       %w[rails
@@ -23,11 +36,10 @@ class HomeController < ApplicationController
          gem
          simple
          view
-         as
+         javascript
          tool
          hola
          test
-         to
          acts
          parser
          string
@@ -35,10 +47,9 @@ class HomeController < ApplicationController
          generator
          data
          json
-         my
          record
          model
-         voteable
+         vote
          cache
          admin
          cli

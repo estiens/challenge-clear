@@ -13,3 +13,6 @@ require("controllers")
 
 import debounced from 'debounced'
 debounced.initialize()
+
+require("chartkick")
+require("chart.js")
