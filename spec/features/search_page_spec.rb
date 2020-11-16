@@ -20,7 +20,7 @@ RSpec.describe "Home Page", type: :feature do
     count = Query.count
 
     page.fill_in "search-input", with: "clean"
-    expect(page.find("#results-list")).to have_text("ruby results")
+    expect(page.find("#results-list")).to have_text("10 ruby results")
 
     expect(Query.count).to eq count + 1
     expect(Query.last.input).to eq "clean"
@@ -33,7 +33,7 @@ RSpec.describe "Home Page", type: :feature do
 
     find("#js-checkbox").set(true)
     fill_in "search-input", with: "clear"
-    expect(page.find("#results-list")).to have_text("javascript results")
+    expect(page.find("#results-list")).to have_text("4 javascript results")
 
     expect(Query.count).to eq count + 1
     expect(Query.last.javascript?).to eq true
@@ -41,15 +41,15 @@ RSpec.describe "Home Page", type: :feature do
   end
 
   # meh this stopped working but i've debugged capybara enough for a take home
-  # it "it shows data", js: true do
-  #   visit root_path
+  it "it shows data", js: true do
+    visit root_path
 
-  #   page.fill_in "search-input", with: "clean"
-  #   expect(page.find("#results-list")).to have_text("10 ruby results")
+    page.fill_in "search-input", with: "clean"
+    expect(page.find("#results-list")).to have_text("10 ruby results")
 
-  #   search_result = find(:dt, "search-result", match: :first)
-  #   search_result.click
+    search_result = find(:dt, "search-result", match: :first)
+    search_result.click
 
-  #   expect(find(:dt, "show-result-info")).to be_present
-  # end
+    expect(find(:dt, "show-result-info")).to be_present
+  end
 end
