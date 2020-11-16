@@ -17,10 +17,21 @@ class Query < ApplicationRecord
   end
 
   def autocomplete_results
-    return [] unless input.length.to_i >= 3
+    Rails.cache.fetch("autocomplete_#{cache_key}") do
+      return [] unless input.length.to_i >= 3
 
-    query.autocomplete_results
+      query.autocomplete_results
+    end
   end
 
-  delegate :record_for, to: :query
+  def record_for(name)
+    Rails.cache.fetch("record_#{cache_key}") do
+      query.record_for(name)
+    end
+  end
+
+  private
+    def cache_key
+      "query_#{input}_#{language}"
+    end
 end
