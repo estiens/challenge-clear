@@ -25,7 +25,11 @@ module RubygemsDatabase
 
     def version_infos
       versions.order(:created_at).map do |v|
-        { number: v["number"], required_language_version: v["required_ruby_version"] }
+        {
+          number: v["number"],
+          required_version: v["required_ruby_version"],
+          updated_at: v["updated_at"]
+        }
       end
     end
 

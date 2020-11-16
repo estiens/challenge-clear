@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <%= icon_for(record) %>
+        </figure>
+      </div>
+      <div class="media-content">
+        <p class="title is-4"><%= record.library_name %></p>
+        <% if record.additional_info.dig(:url) %>
+        <p class="subtitle is-6"><%= link_to record.additional_info.dig(:url) %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="content">
+      <p>
+        <%= record.library_description %>
+      </p>
+      <br>
+      <p>
+        Versions:
+        <li>
+          <% record.version_infos.last(5).each do |v| %>
+            <ul>
+              <%= "Version #{v[:number]}, Updated At: #{v[:updated_at]}, Required: #{v[:required_version]}" %>
+            </ul>
+          <% end %>
+        </li>
+      </p>
+    </div>
+  </div>
+</div>

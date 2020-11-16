@@ -34,7 +34,7 @@
         <% end %>
         <% if @result %>
           <div id='result-show' data-test="show-info" class="column">
-            <p><%= @result&.name %></p>
+            <%= render 'library_card', record: @result  %>
          </div>
         <% end %>
     </div>
