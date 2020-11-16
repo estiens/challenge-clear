@@ -24,3 +24,12 @@ test:
     <<: *default
     database: rubygems_test
 
+production:
+  primary:
+    adapter: postgresql
+    migrations_paths: "db/migrate/primary"
+  rubygems:
+    <<: *default
+    url: <%= ENV["HEROKU_POSTGRESQL_COBALT_URL"] %>
+    migrations_paths: "db/migrate/rubygems"
+
