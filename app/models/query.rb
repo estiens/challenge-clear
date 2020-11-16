@@ -2,15 +2,19 @@ class Query < ApplicationRecord
   validates :input, presence: true
   enum language: %i[ruby python javascript].freeze
 
-  def autocomplete_results
-    return @results if @results
-
-    @results = []
-    return @results unless input.length.to_i >= 3
-
-    input.length.times do |n|
-      @results << [n, input]
-    end
-    @results
+  def record_library
+    "RubygemsDatabase::Query".constantize
   end
+
+  def query
+    @query ||= record_library.new(query: input)
+  end
+
+  def autocomplete_results
+    return [] unless input.length.to_i >= 3
+
+    query.autocomplete_results
+  end
+
+  delegate :record_for, to: :query
 end

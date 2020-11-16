@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
   def index
     @query ||= nil
+    @result ||= nil
   end
-
-  def show; end
 end
